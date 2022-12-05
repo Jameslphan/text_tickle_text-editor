@@ -37,7 +37,4 @@ GIVEN a text editor web application
 - THEN I should have proper build scripts for a webpack application
 
 Commits:
-1. Babel
-2. CSS Loaders
-3. Service Worker Manifest
-4. package.json('scripts')
+1. 
