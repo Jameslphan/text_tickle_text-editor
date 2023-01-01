@@ -8,7 +8,7 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 
 module.exports = () => {
   return {
-    mode: 'development',
+    mode: 'production',
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js'
@@ -22,6 +22,7 @@ module.exports = () => {
         template: './index.html',
         title: 'Text Tickle Text-Editor'
       }),
+      
       // Service Worker
       new InjectManifest({
         swSrc: './src-sw.js',
@@ -30,11 +31,14 @@ module.exports = () => {
 
       // Manifest
       new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
         name: 'Text Tickle Text-Editor',
         short_name: 'TTT-E',
         background_color: 'black',
         theme_color: 'yellow',
         start_url: './',
+        publicPath: './',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
@@ -55,14 +59,15 @@ module.exports = () => {
         // Babel
         {
           test: /\.m?js$/,
-          exclude: /node_modules|bower_components/,
+          exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
-            presets: ['@babel/preset-env'],
-            plugins: ['./babel-plugin-myPlugin", "@babel/plugin-transform-runtime'],
-          }
-        }
-        
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+            },
+          },
+        },
       ],
     },
   };
