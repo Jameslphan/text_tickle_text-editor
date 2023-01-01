@@ -37,4 +37,6 @@ GIVEN a text editor web application
 - THEN I should have proper build scripts for a webpack application
 
 Commits:
-1. 
+1. Function added to install.js
+2. Updated webpack
+3. Function added to src-sw.js (StaleWhileRevalidate) thanks for tip Tim
